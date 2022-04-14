@@ -1,27 +1,27 @@
 //let jest = require("@jest/globals");
 let doAThing = require("../src/review.js");
+let reverseNumber = require("../src/review.js");
 
 
 describe("Takes name of callback function and input number", () => {
     
-    // 5) .toHaveBeenCalled()
+    // I don't know why this works
+    let mockThing = jest.fn();
+    let input = 12345;
+    doAThing(input, reverseNumber);
+    mockThing();
+
+    // 4) .toHaveBeenCalled()
     test("The function should return successfully", () => {
-        const input = 12345;
-        const mockFunction = jest.fn((input) => input+2);
         
-        doAThing(input, mockFunction)
         
-        expect(mockFunction).toHaveBeenCalled();
+        expect(mockThing).toHaveBeenCalled();
     });
 
     // 5) .toHaveReturned()
     test("The function should return successfully", () => {
-        const input = 12345;
-        const mockFunction = jest.fn((input) => input+2);
-        
-        doAThing(input, mockFunction)
-        
-        expect(mockFunction).toHaveReturned();
-    });
+
+        expect(mockThing).toHaveReturned();
+    })
 
 })
